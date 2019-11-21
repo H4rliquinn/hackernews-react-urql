@@ -30,8 +30,10 @@ const CreateLink = props => {
   const [state, executeMutation] = useMutation(POST_MUTATION);
 
   const submit = React.useCallback(() => {
-    executeMutation({ url, description });
-  }, [executeMutation, url, description]);
+    executeMutation({ url, description }).then(() => {
+      props.history.push("/");
+    });
+  }, [executeMutation, url, description, props.history]);
 
   return (
     <div>
